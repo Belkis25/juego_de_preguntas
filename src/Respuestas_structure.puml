@@ -1,0 +1,194 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": ""
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": false,
+    "cutInterfaceStructures": false,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 3,
+    "backwardDepth": 3,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false // root node is included
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "Respuestas"
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_1523804371 { 
+   	label=Respuestas
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Respuestas1523804371[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Respuestas</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   mensaje: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   verdadero: boolean [1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_1841489851 { 
+   	label=Rondas
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Rondas1841489851[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Rondas</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   nivel: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   preguntas: Preguntas [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_71926466 { 
+   	label=Juego
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Juego71926466[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Juego</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   listaRondas: ArrayList&lt;Rondas&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   premio: int [1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_725155565 { 
+   	label=Categoria
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Categoria725155565[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Categoria</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   dificultad: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   listaPreguntas: ArrayList&lt;Preguntas&gt; [0..*]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_753250985 { 
+   	label=Preguntas
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Preguntas753250985[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Preguntas</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   listaRespuestas: ArrayList&lt;Respuestas&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   mensaje: String [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+'edges    
+Categoria725155565 -> Preguntas753250985[label="listaPreguntas
+[0..*]"];
+Juego71926466 -> Rondas1841489851[label="listaRondas
+[0..*]"];
+Preguntas753250985 -> Respuestas1523804371[label="listaRespuestas
+[0..*]"];
+Rondas1841489851 -> Preguntas753250985[label="preguntas
+[0..1]"];
+    
+}
+@enduml
